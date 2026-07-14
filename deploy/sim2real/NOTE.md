@@ -48,7 +48,12 @@ ONNXRUNTIME_ROOT=/path/to/onnxruntime/current \
   bash deploy/sim2real/scripts/build-runtime.sh
 ```
 
-（或把该目录迁进本仓库 `third_party/onnxruntime/current` 后直接构建。）
+本仓库默认带有 Linux aarch64 的 ONNX Runtime，路径是
+`third_party/onnxruntime/current`。如果需要刷新版本，可运行：
+
+```bash
+./scripts/fetch-onnxruntime.sh
+```
 
 ---
 
@@ -109,7 +114,7 @@ bash deploy/sim2real/scripts/show-status.sh
   `module/motion-control`（`velocity_compensator` + 路径规划 + odom），**未迁入**本仓库；
   对应的 `start-path-planning-mode.sh`（路径规划一体模式）也随之移除。若以后需要路径规划，
   再单独迁 / 适配。
-- [ ] **ONNX Runtime** 未迁入本仓库 `third_party/`；要跑真实策略推理需按 §1 指定 `ONNXRUNTIME_ROOT` 或迁移该目录。
+- [x] **ONNX Runtime** Linux aarch64 包已迁入 `third_party/onnxruntime/current`；其他平台需按 §1 指定 `ONNXRUNTIME_ROOT` 或运行下载脚本。
 - [ ] 电机库和 IMU 库后续会拆成独立 service；届时 `motion_control_sim2real_service` 需要移除对 driver 库/节点的直接依赖，改为通过通讯协议适配。
 - [ ] `project.json` 的 `build` target 仍写的是 docker 路径（`scripts/ros2-docker.sh`）；本地构建以本 NOTE 的 `build-runtime.sh` 为准，docker 以后再说。
-- [ ] 安全：`module/service/robo_brain_service/config.yaml` 内硬编码的 OpenAI API key 需轮换（与本运控层无关，顺带记一笔）。
+- [ ] 安全：新增真实机器人/云服务配置时，密钥只能放在本地 `.env` 或外部 secret manager，不能提交到仓库。

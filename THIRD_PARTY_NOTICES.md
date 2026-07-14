@@ -9,7 +9,8 @@ and lockfiles.
 - `third_party/onnxruntime/onnxruntime-linux-aarch64-1.16.2`: ONNX Runtime
   1.16.2 for Linux aarch64, licensed under MIT. The upstream `LICENSE`,
   `ThirdPartyNotices.txt`, and `Privacy.md` files are preserved in that
-  directory.
+  directory. Provenance, checksums, and refresh instructions are documented in
+  `third_party/onnxruntime/README.md`.
 
 ## Package Dependencies
 

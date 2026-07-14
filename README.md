@@ -1,5 +1,9 @@
 # Robotics Pacific Rim
 
+[![CI](https://github.com/letianxing/robotics-pacific-rim/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/letianxing/robotics-pacific-rim/actions/workflows/ci.yml)
+
+[English README](./README.en.md)
+
 Pacific-Rim 是机器人软件系统的 monorepo。日常开发围绕一个明确流程展开：
 
 
@@ -15,7 +19,8 @@ Pacific-Rim 是机器人软件系统的 monorepo。日常开发围绕一个明�
 [CONTRIBUTING.md](./CONTRIBUTING.md)、
 [SECURITY.md](./SECURITY.md)、
 [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)、
-[THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)。
+[THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)、
+[docs/OPEN_SOURCE_CHECKLIST.md](./docs/OPEN_SOURCE_CHECKLIST.md)。
 
 ## 0. 初始化工作区
 
