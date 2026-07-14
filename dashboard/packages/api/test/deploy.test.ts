@@ -29,7 +29,7 @@ describe("deploy router helpers", () => {
 	it("builds pr ros2:deploy args from structured fields", () => {
 		const args = buildDeployImageArgs({
 			domainId: 42,
-			host: "192.168.1.20",
+			host: "192.0.2.20",
 			logsTail: 80,
 			packageName: "remote",
 			port: 2222,
@@ -39,7 +39,7 @@ describe("deploy router helpers", () => {
 		assert.deepEqual(args, [
 			"ros2:deploy",
 			"--host",
-			"192.168.1.20",
+			"192.0.2.20",
 			"--user",
 			"jetson",
 			"--port",
@@ -56,7 +56,7 @@ describe("deploy router helpers", () => {
 	it("builds one pr ros2:deploy command for each selected package", () => {
 		const commands = buildDeployImageCommands({
 			domainId: 42,
-			host: "192.168.1.20",
+			host: "192.0.2.20",
 			logsTail: 80,
 			packageNames: ["remote", "motion_control"],
 			port: 2222,
@@ -69,7 +69,7 @@ describe("deploy router helpers", () => {
 				[
 					"ros2:deploy",
 					"--host",
-					"192.168.1.20",
+					"192.0.2.20",
 					"--user",
 					"jetson",
 					"--port",
@@ -84,7 +84,7 @@ describe("deploy router helpers", () => {
 				[
 					"ros2:deploy",
 					"--host",
-					"192.168.1.20",
+					"192.0.2.20",
 					"--user",
 					"jetson",
 					"--port",
@@ -117,7 +117,7 @@ describe("deploy router helpers", () => {
 		await streamDeployPackage(
 			{
 				domainId: 42,
-				host: "192.168.1.20",
+				host: "192.0.2.20",
 				logsTail: 80,
 				packageNames: ["remote"],
 				port: 2222,
@@ -138,7 +138,7 @@ describe("deploy router helpers", () => {
 
 		assert.deepEqual(calls, [
 			"git pull origin main",
-			"./pr ros2:deploy --host 192.168.1.20 --user jetson --port 2222 --packages-select remote --domain-id 42 --logs-tail 80",
+			"./pr ros2:deploy --host 192.0.2.20 --user jetson --port 2222 --packages-select remote --domain-id 42 --logs-tail 80",
 		]);
 		const output = chunks.join("");
 		assert.match(output, gitPullCommandPattern);

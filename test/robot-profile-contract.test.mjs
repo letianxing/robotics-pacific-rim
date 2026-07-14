@@ -89,7 +89,7 @@ test("robot profile CLI lists active and template profiles", () => {
 });
 
 test("robot profile deploy dry run selects active service packages", () => {
-  const result = runRobotProfiles(["deploy", "pure-driver-sample", "--dry-run", "--host", "192.168.1.20"]);
+  const result = runRobotProfiles(["deploy", "pure-driver-sample", "--dry-run", "--host", "192.0.2.20"]);
   assertExit(result, 0, "robot profile deploy dry-run");
   const output = commandOutput(result);
   assertIncludes(output, "./pr ros2:deploy --packages-select", "robot profile deploy dry-run");

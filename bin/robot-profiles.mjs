@@ -259,7 +259,7 @@ function printHelp() {
   console.log("Examples:");
   console.log("  ./pr robot:profiles");
   console.log("  ./pr robot:show pure-driver-sample");
-  console.log("  ./pr robot:deploy pure-driver-sample --dry-run --host 192.168.1.20");
+  console.log("  ./pr robot:deploy pure-driver-sample --dry-run --host 192.0.2.20");
 }
 
 function printList(args) {

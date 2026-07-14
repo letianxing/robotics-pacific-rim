@@ -345,7 +345,7 @@ function MachineConfigFields({
 					onChange={(event) =>
 						onMachineChange({ ...machine, host: event.target.value })
 					}
-					placeholder="192.168.1.20"
+					placeholder="192.0.2.20"
 					value={machine.host}
 				/>
 				{hostWarning ? <FieldError>{hostWarning}</FieldError> : null}

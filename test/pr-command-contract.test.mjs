@@ -46,7 +46,7 @@ const expectedHelpSnippets = [
   "./pr test:go",
   "./pr ros2:build --packages-select smoke_test1",
   "./pr ros2:exec --network host ros2 topic list",
-  "./pr ros2:deploy --host 192.168.1.20 --packages-select smoke_test1 --domain-id 42",
+  "./pr ros2:deploy --host 192.0.2.20 --packages-select smoke_test1 --domain-id 42",
   "./pr create module navigation",
 ];
 

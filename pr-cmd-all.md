@@ -151,7 +151,7 @@ sudo ./pr clean
 ./pr robot:profiles --json
 ./pr robot:show pure-driver-sample
 ./pr robot:check
-./pr robot:deploy pure-driver-sample --dry-run --host 192.168.1.20 --domain-id 42
+./pr robot:deploy pure-driver-sample --dry-run --host 192.0.2.20 --domain-id 42
 ```
 
 - `pkg/robot/capabilities.json` 定义机器人能力目录，例如 IMU 角速度、底盘速度、关节状态、AI intent、memory event 和 internal state。
@@ -454,14 +454,14 @@ registry、manifest，以及需要的公共 generated 层。
 
 # 通过 SSH 推送运行镜像到远端 Linux 并拉起容器
 ./pr ros2:deploy \
-  --host 192.168.1.20 \
+  --host 192.0.2.20 \
   --user jetson \
   --packages-select smoke_test1 \
   --domain-id 42
 
 # 部署到 ARM64 远端，并传入硬件设备
 ./pr ros2:deploy \
-  --host 192.168.1.20 \
+  --host 192.0.2.20 \
   --user jetson \
   --platform linux/arm64 \
   --packages-select smoke_test1 \
@@ -482,7 +482,7 @@ VISION_TARGET=auto ./pr ros2:build --packages-select smoke_test1
 
 # 用远端架构自动选择 pc-nvidia 或 jetson 并部署
 VISION_TARGET=auto ./pr ros2:deploy \
-  --host 192.168.1.20 \
+  --host 192.0.2.20 \
   --user jetson \
   --packages-select smoke_test1 \
   --domain-id 42
@@ -490,7 +490,7 @@ VISION_TARGET=auto ./pr ros2:deploy \
 # dry-run 不连远端，需要显式给平台才能解析 auto
 VISION_TARGET=auto ./pr ros2:deploy --dry-run \
   --platform linux/arm64 \
-  --host 192.168.1.20 \
+  --host 192.0.2.20 \
   --packages-select smoke_test1
 
 # 切换 ROS2 发行版
@@ -518,7 +518,7 @@ scripts/ros2-docker.sh run "ros2 topic list"
 
 # 部署到远端机器并只构建一个 package
 scripts/ros2-docker.sh deploy \
-  --host 192.168.1.20 \
+  --host 192.0.2.20 \
   --user jetson \
   --remote-dir /tmp/pacific-rim \
   --packages-select smoke_test1

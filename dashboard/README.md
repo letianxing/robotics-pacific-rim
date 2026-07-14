@@ -31,8 +31,15 @@ npm install
 
 This project uses PostgreSQL with Drizzle ORM.
 
-1. Start the local PostgreSQL container. It binds host port `10532` by default.
-2. Make sure `apps/web/.env` points to `postgresql://postgres:password@localhost:10532/dashboard`.
+1. Copy the example environment files:
+
+```bash
+cp apps/web/.env.example apps/web/.env
+cp apps/native/.env.example apps/native/.env
+cp packages/db/.env.example packages/db/.env
+```
+
+2. Start the local PostgreSQL container. It binds host port `10532` by default.
 
 3. Apply the schema to your database:
 

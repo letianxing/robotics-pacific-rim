@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            dashboard/package-lock.json
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Install Dashboard dependencies
+        working-directory: dashboard
+        run: npm ci
+
+      - name: Security audit
+        run: |
+          npm audit --audit-level=high
+          npm audit --omit=dev --audit-level=high --prefix dashboard
+
+      - name: Prepare local pr wrapper
+        run: |
+          printf '%s\n' '#!/usr/bin/env node' 'import("./bin/pr.mjs");' > pr
+          chmod +x pr
+
+      - name: Monorepo check
+        run: node bin/pr.mjs check
+
+      - name: Stability tests
+        run: node test/run.mjs

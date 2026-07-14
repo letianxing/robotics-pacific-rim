@@ -305,7 +305,7 @@ function printHelp() {
   console.log("  ./pr data-format --service smoke_001_service --kind msg --name RobotState --data \"string robot_id\"");
   console.log("  ./pr robot:profiles");
   console.log("  ./pr robot:show pure-driver-sample");
-  console.log("  ./pr robot:deploy pure-driver-sample --dry-run --host 192.168.1.20 --domain-id 42");
+  console.log("  ./pr robot:deploy pure-driver-sample --dry-run --host 192.0.2.20 --domain-id 42");
   console.log("  ./pr check:all");
   console.log("  ./pr test:go");
   console.log("  ./pr monitor -i upperbody");
@@ -313,7 +313,7 @@ function printHelp() {
   console.log("  ./pr ros2:build --packages-select smoke_test1");
   console.log("  ./pr ros2:deploy-base-image");
   console.log("  ./pr ros2:exec --network host ros2 topic list");
-  console.log("  ./pr ros2:deploy --host 192.168.1.20 --packages-select smoke_test1 --domain-id 42");
+  console.log("  ./pr ros2:deploy --host 192.0.2.20 --packages-select smoke_test1 --domain-id 42");
   console.log("  ./pr create module navigation");
   console.log("");
   console.log("Available npm scripts:");

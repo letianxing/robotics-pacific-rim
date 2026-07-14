@@ -16,5 +16,5 @@ Useful commands:
 ./pr robot:profiles
 ./pr robot:show pure-driver-sample
 ./pr robot:check
-./pr robot:deploy pure-driver-sample --dry-run --host 192.168.1.20 --domain-id 42
+./pr robot:deploy pure-driver-sample --dry-run --host 192.0.2.20 --domain-id 42
 ```
