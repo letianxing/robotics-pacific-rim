@@ -1,0 +1,28 @@
+{
+  "name": "infra-log",
+  "root": "infra/log",
+  "projectType": "library",
+  "tags": [
+    "scope:infra",
+    "type:observability",
+    "otel:log",
+    "platform:runtime"
+  ],
+  "implicitDependencies": [
+    "infra-otel",
+    "infra-trace",
+    "infra-protocol"
+  ],
+  "targets": {
+    "build": {
+      "command": "tsc -b infra/trace/tsconfig.json infra/log/tsconfig.json"
+    },
+    "test": {
+      "command": "go -C infra test ./log/go",
+      "outputs": []
+    },
+    "check": {
+      "command": "node bin/check-project.mjs infra-log"
+    }
+  }
+}

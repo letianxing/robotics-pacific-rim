@@ -1,0 +1,9 @@
+services:
+  ping:
+    role: server
+    direction: server
+    data: proto
+    type: middleware_rpc_server_test_service.Ping
+    addresses:
+      nats: test.middleware.rpc.ping
+      cyclonedds: test.middleware.rpc.ping.request

@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package pacific_rim.imu_service.protocols.pb;
+
+// 融合后的 IMU 数据,与 imu_driver::ImuSample 一一对应。
+// 单位:acc m/s^2,gyro deg/s,euler deg,quat 无量纲。
+message ImuState {
+  float acc_x  = 1;
+  float acc_y  = 2;
+  float acc_z  = 3;
+  float gyro_x = 4;
+  float gyro_y = 5;
+  float gyro_z = 6;
+  float euler_pitch = 7;
+  float euler_roll  = 8;
+  float euler_yaw   = 9;
+  double quat_q0 = 10;
+  double quat_q1 = 11;
+  double quat_q2 = 12;
+  double quat_q3 = 13;
+}

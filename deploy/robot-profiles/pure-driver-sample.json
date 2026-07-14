@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "id": "pure-driver-sample",
+  "displayName": "Pure Driver Sample",
+  "status": "active",
+  "robotClass": "reference",
+  "summary": "Minimal deployable profile for the pure Pacific-Rim branch with one driver sample and middleware smoke services.",
+  "capabilities": [
+    "state.inertial",
+    "runtime.middleware.pubsub",
+    "runtime.middleware.rpc"
+  ],
+  "services": [
+    {
+      "service": "imu_service",
+      "package": "imu",
+      "role": "driver.inertial",
+      "required": true,
+      "capabilities": [
+        "state.inertial"
+      ],
+      "notes": "Pure driver sample; business hardware loop is intentionally stripped from this branch."
+    },
+    {
+      "service": "middleware_pub_test_service",
+      "package": "middleware_pub_test",
+      "role": "middleware.publisher-smoke",
+      "required": true,
+      "capabilities": [
+        "runtime.middleware.pubsub"
+      ]
+    },
+    {
+      "service": "middleware_sub_test_service",
+      "package": "middleware_sub_test",
+      "role": "middleware.subscriber-smoke",
+      "required": true,
+      "capabilities": [
+        "runtime.middleware.pubsub"
+      ]
+    },
+    {
+      "service": "middleware_rpc_client_test_service",
+      "package": "middleware_rpc_client_test",
+      "role": "middleware.rpc-client-smoke",
+      "required": true,
+      "capabilities": [
+        "runtime.middleware.rpc"
+      ]
+    },
+    {
+      "service": "middleware_rpc_server_test_service",
+      "package": "middleware_rpc_server_test",
+      "role": "middleware.rpc-server-smoke",
+      "required": true,
+      "capabilities": [
+        "runtime.middleware.rpc"
+      ]
+    }
+  ],
+  "deploy": {
+    "rosDistro": "humble",
+    "defaultDomainId": 42,
+    "transportFamilies": [
+      "ros2",
+      "cyclonedds",
+      "nats"
+    ],
+    "targets": [
+      "local",
+      "remote"
+    ],
+    "verification": [
+      "./pr nx run-many -t check --projects=module-imu_service,module-middleware_pub_test_service,module-middleware_sub_test_service,module-middleware_rpc_client_test_service,module-middleware_rpc_server_test_service",
+      "./pr nx run-many -t build --projects=module-imu_service,module-middleware_pub_test_service,module-middleware_sub_test_service,module-middleware_rpc_client_test_service,module-middleware_rpc_server_test_service"
+    ]
+  },
+  "aiNative": {
+    "skill": ".skill/robot_full_stack/SKILL.md",
+    "agentEntry": "AGENTS.md",
+    "modulePolicy": "Create or edit runtime behavior inside module/service only, and communicate through protocol routes."
+  }
+}

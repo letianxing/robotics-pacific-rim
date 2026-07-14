@@ -1,0 +1,15 @@
+{
+  "name": "deploy-kubernetes",
+  "root": "deploy/kubernetes",
+  "projectType": "deployment",
+  "tags": [
+    "scope:deploy",
+    "type:kubernetes-env"
+  ],
+  "implicitDependencies": [],
+  "targets": {
+    "check": {
+      "command": "node bin/check-project.mjs deploy-kubernetes"
+    }
+  }
+}

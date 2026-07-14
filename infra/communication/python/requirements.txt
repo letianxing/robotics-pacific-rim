@@ -1,0 +1,4 @@
+nats-py>=2.9.0
+PyYAML>=6.0.0
+# Optional: required only when using pacific_rim_communication_infra.dds.CycloneDdsClient.
+# cyclonedds>=0.10.0

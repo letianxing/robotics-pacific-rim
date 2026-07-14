@@ -1,0 +1,30 @@
+service:
+  name: "middleware_rpc_server_test_service"
+  runtime_package: "middleware_rpc_server_test"
+
+trace:
+  service_name: "middleware_rpc_server_test_service"
+
+communication:
+  security:
+    require_explicit_profile: false
+    profiles:
+      default:
+        enabled: false
+        algorithm: aes-256-gcm
+        key_id: middleware_rpc_server_test-dev-v1
+        key_env: PR_COMM_SECURITY_MIDDLEWARE_RPC_SERVER_TEST_KEY
+        salt_env: PR_COMM_SECURITY_MIDDLEWARE_RPC_SERVER_TEST_SALT
+        aad_context: pacific-rim.middleware_rpc_server_test_service
+        replay_window: 4096
+        fail_open: false
+  middleware:
+    nats:
+      name: test-nats
+      server_url: nats://127.0.0.1:4222
+    cyclonedds:
+      name: test-dds
+      domain_id: 0
+      config_uri: file:///etc/cyclonedds/cyclonedds.xml
+  services:
+  topics: {}

@@ -1,0 +1,50 @@
+{
+  "name": "{{projectName}}",
+  "root": "module/service/{{name}}",
+  "projectType": "application",
+  "tags": [
+    "scope:module",
+    "type:robot-behavior",
+    "framework:ros2",
+    "ros2:{{rosDistro}}",
+    "language:python",
+    "platform:runtime"
+  ],
+  "implicitDependencies": [
+    "infra-runtime",
+    "infra-communication",
+    "infra-protocol",
+    "infra-otel",
+    "infra-log",
+    "infra-metric",
+    "infra-trace",
+    "pkg-idl"
+  ],
+  "targets": {
+    "check": {
+      "command": "node bin/check-project.mjs {{projectName}}"
+    },
+    "build": {
+      "command": "ROS_DISTRO={{rosDistro}} scripts/ros2-docker.sh build --packages-select {{packageName}}",
+      "cache": false,
+      "inputs": [
+        "production",
+        "^production",
+        "workspace",
+        {
+          "env": "ROS_DISTRO"
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}/build/{{packageName}}",
+        "{workspaceRoot}/install/{{packageName}}",
+        "{workspaceRoot}/log"
+      ]
+    }
+  },
+  "ros2": {
+    "package": "{{packageName}}",
+    "distro": "{{rosDistro}}",
+    "includeInAll": true
+  }
+}

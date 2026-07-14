@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package pacific_rim.middleware_rpc_server_test_service;
+
+message PingRequest {
+  string request_id = 1;
+  string payload = 2;
+}
+
+message PingResponse {
+  bool ok = 1;
+  string message = 2;
+}
+
+service MiddlewareRpcServerTest {
+  rpc Ping(PingRequest) returns (PingResponse);
+}

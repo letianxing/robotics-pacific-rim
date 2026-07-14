@@ -1,0 +1,44 @@
+{
+  "name": "dashboard",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "check-types": "turbo check-types",
+    "dev:native": "turbo -F native dev",
+    "dev:web": "turbo -F web dev",
+    "dev:tui": "turbo -F tui dev",
+    "db:push": "cd packages/db && npm exec drizzle-kit -- push --verbose",
+    "db:studio": "turbo -F @dashboard/db db:studio",
+    "db:generate": "turbo -F @dashboard/db db:generate",
+    "db:migrate": "turbo -F @dashboard/db db:migrate",
+    "db:start": "turbo -F @dashboard/db db:start",
+    "db:watch": "turbo -F @dashboard/db db:watch",
+    "db:stop": "turbo -F @dashboard/db db:stop",
+    "db:down": "turbo -F @dashboard/db db:down",
+    "check": "ultracite check",
+    "fix": "ultracite fix",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@dashboard/env": "*",
+    "dotenv": "^17.2.2",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.16",
+    "@dashboard/config": "*",
+    "@types/node": "^22.13.14",
+    "husky": "latest",
+    "lefthook": "latest",
+    "turbo": "^2.9.16",
+    "typescript": "^6",
+    "ultracite": "7.8.3"
+  },
+  "packageManager": "npm@10.9.7"
+}

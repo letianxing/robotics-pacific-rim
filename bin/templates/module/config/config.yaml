@@ -1,0 +1,26 @@
+service:
+  name: "{{name}}"
+  runtime_package: "{{packageName}}"
+
+trace:
+  service_name: "{{name}}"
+
+communication:
+  security:
+    require_explicit_profile: false
+    profiles:
+      default:
+        enabled: false
+        algorithm: aes-256-gcm
+        key_id: "{{packageName}}-dev-v1"
+        key_env: "PR_COMM_SECURITY_{{securityEnvPrefix}}_KEY"
+        salt_env: "PR_COMM_SECURITY_{{securityEnvPrefix}}_SALT"
+        aad_context: "pacific-rim.{{name}}"
+        replay_window: 4096
+        fail_open: false
+
+  middleware: {}
+
+  services: {}
+
+  topics: {}

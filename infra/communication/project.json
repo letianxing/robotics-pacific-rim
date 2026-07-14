@@ -1,0 +1,23 @@
+{
+  "name": "infra-communication",
+  "root": "infra/communication",
+  "projectType": "library",
+  "tags": [
+    "scope:infra",
+    "type:communication",
+    "platform:runtime"
+  ],
+  "implicitDependencies": [
+    "pkg-idl",
+    "infra-protocol"
+  ],
+  "targets": {
+    "check": {
+      "command": "node bin/check-project.mjs infra-communication"
+    },
+    "test": {
+      "command": "GOCACHE=${GOCACHE:-$(pwd)/.cache/go-build} go -C infra test ./communication/go/... && PYTHONPATH=infra/protocol/python:infra/communication/python python3 -m unittest discover -s infra/communication/python/pacific_rim_communication_infra -p 'test_*.py'",
+      "outputs": []
+    }
+  }
+}

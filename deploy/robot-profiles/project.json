@@ -1,0 +1,18 @@
+{
+  "name": "deploy-robot-profiles",
+  "root": "deploy/robot-profiles",
+  "projectType": "deployment",
+  "implicitDependencies": [
+    "pkg-robot"
+  ],
+  "tags": [
+    "scope:deploy",
+    "type:robot-profile",
+    "platform:deployment"
+  ],
+  "targets": {
+    "check": {
+      "command": "node bin/robot-profiles.mjs check"
+    }
+  }
+}

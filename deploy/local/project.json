@@ -1,0 +1,15 @@
+{
+  "name": "deploy-local",
+  "root": "deploy/local",
+  "projectType": "deployment",
+  "tags": [
+    "scope:deploy",
+    "type:local-env"
+  ],
+  "implicitDependencies": [],
+  "targets": {
+    "check": {
+      "command": "node bin/check-project.mjs deploy-local"
+    }
+  }
+}

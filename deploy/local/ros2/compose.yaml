@@ -1,0 +1,104 @@
+services:
+  grafana:
+    image: grafana/grafana:11.5.2
+    depends_on:
+      - loki
+      - prometheus
+      - tempo
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+      GF_AUTH_DISABLE_LOGIN_FORM: "true"
+    ports:
+      - "0.0.0.0:16000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ../observability/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
+
+  loki:
+    image: grafana/loki:3.4.2
+    command:
+      - -config.file=/etc/loki/config.yaml
+    ports:
+      - "0.0.0.0:6200:3100"
+    volumes:
+      - loki-data:/loki
+      - ../observability/loki.yaml:/etc/loki/config.yaml:ro
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.130.1
+    command:
+      - --config=/etc/otelcol/config.yaml
+    depends_on:
+      - loki
+      - tempo
+    volumes:
+      - ../observability/otel-collector.yaml:/etc/otelcol/config.yaml:ro
+    ports:
+      - "0.0.0.0:26266:13133"
+      - "0.0.0.0:8634:4317"
+      - "0.0.0.0:8636:4318"
+      - "0.0.0.0:18928:9464"
+
+  prometheus:
+    image: prom/prometheus:v3.2.1
+    command:
+      - --config.file=/etc/prometheus/prometheus.yaml
+      - --storage.tsdb.path=/prometheus
+      - --web.enable-lifecycle
+    ports:
+      - "0.0.0.0:18180:9090"
+    volumes:
+      - prometheus-data:/prometheus
+      - ../observability/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
+
+  ros2:
+    build:
+      context: ../../..
+      dockerfile: deploy/local/ros2/Dockerfile
+      args:
+        ROS_DISTRO: ${ROS_DISTRO:-humble}
+        ROS_BASE_IMAGE: ${ROS_BASE_IMAGE:-ros:${ROS_DISTRO:-humble}-ros-base}
+        GO_VERSION: ${GO_VERSION:-1.25.5}
+        INSTALL_GOLANG: ${INSTALL_GOLANG:-0}
+        USER_UID: ${USER_UID:-1000}
+        USER_GID: ${USER_GID:-1000}
+        ENABLE_VISION_STACK: ${ENABLE_VISION_STACK:-0}
+        VISION_TARGET: ${VISION_TARGET:-none}
+        ONNX_VERSION: ${ONNX_VERSION:-1.16.2}
+    image: ${ROS2_IMAGE:-pacific-rim-ros2:humble}
+    working_dir: /workspace
+    volumes:
+      - ../../..:/workspace
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${PLATFORM_OTLP_ENDPOINT:-http://otel-collector:4318}
+      PACIFIC_RIM_OTEL_DEBUG: ${PACIFIC_RIM_OTEL_DEBUG:-}
+      PACIFIC_RIM_GO_BUILD_TAGS: ${PACIFIC_RIM_GO_BUILD_TAGS:-}
+      INSTALL_GOLANG: ${INSTALL_GOLANG:-0}
+      GO_DOWNLOAD_BASE: ${GO_DOWNLOAD_BASE:-https://dl.google.com/go}
+      GOPROXY: ${GOPROXY:-https://goproxy.cn,direct}
+      GOSUMDB: ${GOSUMDB:-sum.golang.google.cn}
+      ROS_DISTRO: ${ROS_DISTRO:-humble}
+      ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-42}
+      RMW_IMPLEMENTATION: ${RMW_IMPLEMENTATION:-rmw_cyclonedds_cpp}
+      ENABLE_VISION_STACK: ${ENABLE_VISION_STACK:-0}
+      VISION_TARGET: ${VISION_TARGET:-none}
+      ONNX_VERSION: ${ONNX_VERSION:-1.16.2}
+    stdin_open: true
+    tty: true
+
+  tempo:
+    image: grafana/tempo:2.7.1
+    command:
+      - -config.file=/etc/tempo/config.yaml
+    ports:
+      - "0.0.0.0:6400:3200"
+    volumes:
+      - tempo-data:/var/tempo
+      - ../observability/tempo.yaml:/etc/tempo/config.yaml:ro
+
+volumes:
+  grafana-data:
+  loki-data:
+  prometheus-data:
+  tempo-data:

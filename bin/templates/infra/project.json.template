@@ -1,0 +1,15 @@
+{
+  "name": "{{projectName}}",
+  "root": "infra/{{name}}",
+  "projectType": "library",
+  "tags": [
+    "scope:infra",
+    "type:shared",
+    "platform:runtime"
+  ],
+  "targets": {
+    "check": {
+      "command": "node bin/check-project.mjs {{projectName}}"
+    }
+  }
+}

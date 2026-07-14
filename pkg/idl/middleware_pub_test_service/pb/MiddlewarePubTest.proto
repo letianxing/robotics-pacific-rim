@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package pacific_rim.middleware_pub_test_service;
+
+message RobotStateEvent {
+  string robot_id = 1;
+  string state = 2;
+  int64 timestamp_unix_ms = 3;
+}

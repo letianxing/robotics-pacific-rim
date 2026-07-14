@@ -1,0 +1,17 @@
+{
+  "name": "example",
+  "root": "example",
+  "projectType": "application",
+  "tags": [
+    "scope:app",
+    "type:example"
+  ],
+  "implicitDependencies": [
+    "infra-runtime"
+  ],
+  "targets": {
+    "check": {
+      "command": "node bin/check-project.mjs example"
+    }
+  }
+}

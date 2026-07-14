@@ -1,0 +1,23 @@
+{
+  "name": "infra-otel",
+  "root": "infra/otel",
+  "projectType": "library",
+  "tags": [
+    "scope:infra",
+    "type:observability",
+    "otel:setup",
+    "platform:runtime"
+  ],
+  "targets": {
+    "build": {
+      "command": "tsc -p infra/otel/tsconfig.json"
+    },
+    "test": {
+      "command": "go -C infra test ./otel/go",
+      "outputs": []
+    },
+    "check": {
+      "command": "node bin/check-project.mjs infra-otel"
+    }
+  }
+}

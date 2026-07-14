@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "id": "four-wheel-reference",
+  "displayName": "Four-Wheel Reference Stack",
+  "status": "template",
+  "robotClass": "four-wheel",
+  "summary": "Recommended capability shape for differential, Ackermann, or mecanum mobile robots.",
+  "capabilities": [
+    "state.inertial",
+    "state.base_odometry",
+    "state.battery",
+    "diagnostics.health",
+    "motion.base_velocity",
+    "perception.rgb_camera",
+    "perception.depth_camera",
+    "navigation.map",
+    "navigation.goal",
+    "ai.intent",
+    "ai.task_plan"
+  ],
+  "services": [
+    {
+      "service": "imu_service",
+      "package": "imu",
+      "role": "driver.inertial",
+      "required": false,
+      "capabilities": [
+        "state.inertial"
+      ]
+    }
+  ],
+  "plannedServices": [
+    {
+      "service": "base_odometry_service",
+      "role": "state.base-odometry",
+      "capabilities": [
+        "state.base_odometry"
+      ]
+    },
+    {
+      "service": "base_motion_service",
+      "role": "motion.mobile-base",
+      "capabilities": [
+        "motion.base_velocity"
+      ]
+    },
+    {
+      "service": "navigation_service",
+      "role": "navigation.goal-execution",
+      "capabilities": [
+        "navigation.map",
+        "navigation.goal"
+      ]
+    },
+    {
+      "service": "robo_brain_service",
+      "role": "ai.intent-and-planning",
+      "capabilities": [
+        "ai.intent",
+        "ai.task_plan"
+      ]
+    }
+  ],
+  "deploy": {
+    "rosDistro": "humble",
+    "defaultDomainId": 42,
+    "transportFamilies": [
+      "ros2",
+      "fastdds",
+      "cyclonedds",
+      "nats"
+    ],
+    "targets": [
+      "local",
+      "remote",
+      "jetson",
+      "pc-nvidia"
+    ],
+    "verification": []
+  },
+  "aiNative": {
+    "skill": ".skill/robot_full_stack/SKILL.md",
+    "agentEntry": "AGENTS.md"
+  }
+}

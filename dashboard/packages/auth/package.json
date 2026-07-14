@@ -1,0 +1,25 @@
+{
+  "name": "@dashboard/auth",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {},
+  "dependencies": {
+    "@better-auth/expo": "1.6.11",
+    "@dashboard/db": "*",
+    "@dashboard/env": "*",
+    "better-auth": "1.6.11",
+    "dotenv": "^17.2.2",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@dashboard/config": "*",
+    "typescript": "^6"
+  }
+}

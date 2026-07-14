@@ -1,0 +1,15 @@
+{
+  "name": "pkg-idl",
+  "root": "pkg/idl",
+  "projectType": "library",
+  "tags": [
+    "scope:pkg",
+    "type:contract",
+    "platform:idl"
+  ],
+  "targets": {
+    "check": {
+      "command": "node bin/check-project.mjs pkg-idl"
+    }
+  }
+}

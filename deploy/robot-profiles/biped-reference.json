@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "id": "biped-reference",
+  "displayName": "Biped Reference Stack",
+  "status": "template",
+  "robotClass": "biped",
+  "summary": "Recommended capability shape for legged robots that need balance, gait, and fall-recovery state.",
+  "capabilities": [
+    "state.inertial",
+    "state.joint",
+    "state.battery",
+    "diagnostics.health",
+    "motion.gait",
+    "perception.rgb_camera",
+    "navigation.goal",
+    "ai.intent",
+    "ai.task_plan"
+  ],
+  "services": [
+    {
+      "service": "imu_service",
+      "package": "imu",
+      "role": "driver.inertial",
+      "required": false,
+      "capabilities": [
+        "state.inertial"
+      ]
+    }
+  ],
+  "plannedServices": [
+    {
+      "service": "joint_state_service",
+      "role": "driver.joint-state",
+      "capabilities": [
+        "state.joint"
+      ]
+    },
+    {
+      "service": "gait_control_service",
+      "role": "motion.gait-control",
+      "capabilities": [
+        "motion.gait"
+      ]
+    },
+    {
+      "service": "fall_safety_service",
+      "role": "diagnostics.balance-safety",
+      "capabilities": [
+        "diagnostics.health"
+      ]
+    },
+    {
+      "service": "robo_brain_service",
+      "role": "ai.intent-and-planning",
+      "capabilities": [
+        "ai.intent",
+        "ai.task_plan"
+      ]
+    }
+  ],
+  "deploy": {
+    "rosDistro": "humble",
+    "defaultDomainId": 42,
+    "transportFamilies": [
+      "ros2",
+      "fastdds",
+      "cyclonedds",
+      "nats"
+    ],
+    "targets": [
+      "remote",
+      "jetson",
+      "pc-nvidia"
+    ],
+    "verification": []
+  },
+  "aiNative": {
+    "skill": ".skill/robot_full_stack/SKILL.md",
+    "agentEntry": "AGENTS.md"
+  }
+}

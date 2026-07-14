@@ -1,0 +1,48 @@
+{
+  "name": "{{projectName}}",
+  "root": "module/service/{{name}}",
+  "projectType": "application",
+  "tags": [
+    "scope:module",
+    "type:robot-behavior",
+    "framework:ros2",
+    "framework:go",
+    "ros2:{{rosDistro}}",
+    "language:go",
+    "platform:runtime"
+  ],
+  "implicitDependencies": [
+    "infra-runtime",
+    "infra-communication",
+    "infra-protocol",
+    "infra-otel",
+    "infra-log",
+    "infra-metric",
+    "infra-trace",
+    "pkg-idl"
+  ],
+  "targets": {
+    "check": {
+      "command": "node bin/check-project.mjs {{projectName}}"
+    },
+    "build": {
+      "command": "mkdir -p out/debug/bin/business/{{name}} && GOCACHE=$(pwd)/.cache/go-build go -C module/service/{{name}} build -o ../../../out/debug/bin/business/{{name}}/{{executableName}} ./cmd/{{packageName}}",
+      "cache": false,
+      "inputs": [
+        "production",
+        "^production",
+        "workspace",
+        {
+          "env": "ROS_DISTRO"
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}/out/debug/bin/business/{{name}}/{{executableName}}"
+      ]
+    },
+    "test": {
+      "command": "GOCACHE=$(pwd)/.cache/go-build go -C module/service/{{name}} test ./...",
+      "outputs": []
+    }
+  }
+}

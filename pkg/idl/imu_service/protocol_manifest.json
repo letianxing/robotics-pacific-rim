@@ -1,0 +1,190 @@
+{
+  "module": "imu_service",
+  "runtimePackage": "imu",
+  "idlService": "imu_service",
+  "language": "cpp",
+  "goModulePath": "",
+  "includeRuntimeRegistry": true,
+  "moduleRoot": "module/service/imu_service",
+  "config": "module/service/imu_service/config/config.yaml",
+  "protocolSources": [
+    "pkg/idl"
+  ],
+  "ddsTypedCodegen": [],
+  "interfaces": [
+    {
+      "name": "/imu/state",
+      "kind": "topic",
+      "role": "publisher",
+      "idlService": "imu_service",
+      "topicRef": "imu_service./imu/state",
+      "publicTopic": {
+        "ref": "imu_service./imu/state",
+        "manifest": "pkg/idl/imu_service/public/interfaces.yaml",
+        "payload": {
+          "format": "protobuf",
+          "type": "pacific_rim.imu_service.protocols.pb.ImuState"
+        },
+        "addresses": {
+          "cyclonedds": "/imu/state"
+        },
+        "bindings": []
+      },
+      "routeType": "",
+      "payload": {
+        "format": "protobuf",
+        "type": "pacific_rim.imu_service.protocols.pb.ImuState"
+      },
+      "bindings": [
+        {
+          "direction": "publish",
+          "middleware": "cyclonedds",
+          "transport": "cyclonedds_topic",
+          "topic": "/imu/state",
+          "metadata": {
+            "middleware.family": "cyclonedds",
+            "middleware.runtime": "cyclonedds",
+            "middleware.implementation": "native_cyclonedds",
+            "implementation": "native_cyclonedds"
+          },
+          "qos": {
+            "reliability": "best_effort",
+            "history": "keep_last",
+            "depth": 1
+          }
+        }
+      ],
+      "routeNames": [
+        "/imu/state_cyclonedds"
+      ],
+      "protocols": [
+        {
+          "format": "protobuf_message",
+          "name": "ImuState",
+          "package": "pacific_rim.imu_service.protocols.pb",
+          "file": "pkg/idl/imu_service/pb/imu_service.proto",
+          "idlService": "imu_service",
+          "fullName": "pacific_rim.imu_service.protocols.pb.ImuState",
+          "fields": [
+            {
+              "name": "acc_x",
+              "type": "float",
+              "repeated": false,
+              "optional": false,
+              "tag": 1
+            },
+            {
+              "name": "acc_y",
+              "type": "float",
+              "repeated": false,
+              "optional": false,
+              "tag": 2
+            },
+            {
+              "name": "acc_z",
+              "type": "float",
+              "repeated": false,
+              "optional": false,
+              "tag": 3
+            },
+            {
+              "name": "gyro_x",
+              "type": "float",
+              "repeated": false,
+              "optional": false,
+              "tag": 4
+            },
+            {
+              "name": "gyro_y",
+              "type": "float",
+              "repeated": false,
+              "optional": false,
+              "tag": 5
+            },
+            {
+              "name": "gyro_z",
+              "type": "float",
+              "repeated": false,
+              "optional": false,
+              "tag": 6
+            },
+            {
+              "name": "euler_pitch",
+              "type": "float",
+              "repeated": false,
+              "optional": false,
+              "tag": 7
+            },
+            {
+              "name": "euler_roll",
+              "type": "float",
+              "repeated": false,
+              "optional": false,
+              "tag": 8
+            },
+            {
+              "name": "euler_yaw",
+              "type": "float",
+              "repeated": false,
+              "optional": false,
+              "tag": 9
+            },
+            {
+              "name": "quat_q0",
+              "type": "double",
+              "repeated": false,
+              "optional": false,
+              "tag": 10
+            },
+            {
+              "name": "quat_q1",
+              "type": "double",
+              "repeated": false,
+              "optional": false,
+              "tag": 11
+            },
+            {
+              "name": "quat_q2",
+              "type": "double",
+              "repeated": false,
+              "optional": false,
+              "tag": 12
+            },
+            {
+              "name": "quat_q3",
+              "type": "double",
+              "repeated": false,
+              "optional": false,
+              "tag": 13
+            }
+          ]
+        }
+      ],
+      "artifacts": [],
+      "ddsTyped": null,
+      "generated": {
+        "apiPublisher": "api/publisher/include/imu_state_api_publisher.hpp",
+        "publisherService": "service/generated/include/imu_state_publisher_service.hpp"
+      },
+      "compatibility": {
+        "descriptors": [
+          {
+            "schema": {
+              "language": "protobuf",
+              "kind": "message",
+              "type": "pacific_rim.imu_service.protocols.pb.ImuState"
+            },
+            "codec": "protobuf",
+            "backend": "cyclonedds",
+            "pattern": "pubsub",
+            "binding": "cyclonedds_topic",
+            "adapter": "",
+            "dds": null,
+            "warnings": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ]
+}

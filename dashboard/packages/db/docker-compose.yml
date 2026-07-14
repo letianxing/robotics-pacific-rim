@@ -1,0 +1,23 @@
+name: dashboard
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: dashboard-postgres
+    environment:
+      POSTGRES_DB: dashboard
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "${DASHBOARD_POSTGRES_PORT:-10532}:5432"
+    volumes:
+      - dashboard_postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  dashboard_postgres_data:

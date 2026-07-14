@@ -1,0 +1,25 @@
+service:
+  name: "imu_service"
+  runtime_package: "imu"
+
+trace:
+  service_name: "imu_service"
+
+communication:
+  security:
+    require_explicit_profile: false
+    profiles:
+      default:
+        enabled: false
+        algorithm: aes-256-gcm
+        key_id: "imu-dev-v1"
+        key_env: "PR_COMM_SECURITY_IMU_KEY"
+        salt_env: "PR_COMM_SECURITY_IMU_SALT"
+        aad_context: "pacific-rim.imu_service"
+        replay_window: 4096
+        fail_open: false
+
+  middleware: {}
+
+  services:
+  topics:

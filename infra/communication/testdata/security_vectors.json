@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "vectors": [
+    {
+      "name": "aes256_gcm_rpc_request",
+      "algorithm": "aes-256-gcm",
+      "profile": "robot_control",
+      "key_id": "robot-control-v1",
+      "master_key_b64": "MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=",
+      "salt_b64": "cGFjaWZpYy1yaW0tc2VjdXJpdHktc2FsdC0wMDAx",
+      "aad_context": "test-context",
+      "route": "play_action",
+      "binding": "action_nats",
+      "transport": "nats",
+      "address": "robot.rpc.play_action",
+      "message_type": "action_service/srv/PlayAction",
+      "direction": "rpc_request",
+      "sender_id": 72623859790382856,
+      "sequence": 7,
+      "nonce_hex": "00112233445566778899aabb",
+      "plaintext_hex": "706c61792d616374696f6e2d72657175657374",
+      "envelope_hex": "5052534301010000100807060504030201070000000000000000112233445566778899aabb6db2443a4fed5fb8b2c540a6126a94c113000000726f626f742d636f6e74726f6c2d7631e90b5974a33d36dfbd13e57c4cb5cec0882b1a03c1aa98dbe718080e1864751d166391"
+    }
+  ]
+}

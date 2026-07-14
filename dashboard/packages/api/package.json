@@ -1,0 +1,27 @@
+{
+  "name": "@dashboard/api",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {},
+  "dependencies": {
+    "@dashboard/auth": "*",
+    "@dashboard/db": "*",
+    "@dashboard/env": "*",
+    "@trpc/client": "^11.16.0",
+    "@trpc/server": "^11.16.0",
+    "dotenv": "^17.2.2",
+    "next": "^16.2.0",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@dashboard/config": "*",
+    "typescript": "^6"
+  }
+}

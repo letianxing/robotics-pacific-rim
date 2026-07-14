@@ -1,0 +1,14 @@
+{
+  "name": "pr-monitor",
+  "root": "monitor/pr-monitor",
+  "projectType": "tool",
+  "tags": ["scope:tools", "language:typescript"],
+  "targets": {
+    "check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx tsc -p monitor/pr-monitor/tsconfig.json --noEmit"
+      }
+    }
+  }
+}

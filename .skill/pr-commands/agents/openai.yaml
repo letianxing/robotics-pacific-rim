@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pacific-Rim pr Commands"
+  short_description: "Pick and run common ./pr workflows"
+  default_prompt: "Use $pr-commands to choose the right ./pr command for my Pacific-Rim task."

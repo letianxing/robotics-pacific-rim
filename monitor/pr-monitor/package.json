@@ -1,0 +1,19 @@
+{
+  "name": "@pacific-rim/pr-monitor",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "pr-monitor": "./src/index.ts"
+  },
+  "scripts": {
+    "dev": "bun run src/index.ts --loc -x",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@opentui/core": "^0.4.1"
+  },
+  "devDependencies": {
+    "typescript": "^6"
+  }
+}

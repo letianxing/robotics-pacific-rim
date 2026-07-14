@@ -1,0 +1,42 @@
+// Better-T-Stack
+//
+// Website: https://www.better-t-stack.dev/
+// Stack Builder: https://www.better-t-stack.dev/new
+// Analytics: https://www.better-t-stack.dev/analytics
+// Showcase: https://www.better-t-stack.dev/showcase
+// Sponsor: https://github.com/sponsors/AmanVarshney01
+//
+// Add new addons with: npx create-better-t-stack add
+// This file is safe to delete
+
+{
+  "$schema": "https://r2.better-t-stack.dev/schema.json",
+  "version": "3.33.0",
+  "createdAt": "2026-06-15T13:35:24.223Z",
+  "reproducibleCommand": "npx create-better-t-stack@latest dashboard --frontend next native-uniwind --backend self --runtime none --database postgres --orm drizzle --api trpc --auth better-auth --payments none --addons turborepo biome oxlint ultracite husky lefthook opentui evlog skills mcp --examples none --db-setup docker --web-deploy none --server-deploy none --no-git --package-manager npm --no-install",
+  "database": "postgres",
+  "orm": "drizzle",
+  "backend": "self",
+  "runtime": "none",
+  "frontend": ["next", "native-uniwind"],
+  "addons": [
+    "turborepo",
+    "biome",
+    "oxlint",
+    "ultracite",
+    "husky",
+    "lefthook",
+    "opentui",
+    "evlog",
+    "skills",
+    "mcp",
+  ],
+  "examples": [],
+  "auth": "better-auth",
+  "payments": "none",
+  "packageManager": "npm",
+  "dbSetup": "docker",
+  "api": "trpc",
+  "webDeploy": "none",
+  "serverDeploy": "none",
+}

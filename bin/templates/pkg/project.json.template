@@ -1,0 +1,15 @@
+{
+  "name": "{{projectName}}",
+  "root": "pkg/{{name}}",
+  "projectType": "library",
+  "tags": [
+    "scope:pkg",
+    "type:contract",
+    "platform:runtime"
+  ],
+  "targets": {
+    "check": {
+      "command": "node bin/check-project.mjs {{projectName}}"
+    }
+  }
+}

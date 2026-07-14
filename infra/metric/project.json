@@ -1,0 +1,27 @@
+{
+  "name": "infra-metric",
+  "root": "infra/metric",
+  "projectType": "library",
+  "tags": [
+    "scope:infra",
+    "type:observability",
+    "otel:metric",
+    "platform:runtime"
+  ],
+  "implicitDependencies": [
+    "infra-otel",
+    "infra-protocol"
+  ],
+  "targets": {
+    "build": {
+      "command": "tsc -p infra/metric/tsconfig.json"
+    },
+    "test": {
+      "command": "go -C infra test ./metric/go",
+      "outputs": []
+    },
+    "check": {
+      "command": "node bin/check-project.mjs infra-metric"
+    }
+  }
+}

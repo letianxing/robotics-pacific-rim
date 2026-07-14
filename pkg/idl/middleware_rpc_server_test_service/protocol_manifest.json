@@ -1,0 +1,156 @@
+{
+  "module": "middleware_rpc_server_test_service",
+  "runtimePackage": "middleware_rpc_server_test",
+  "idlService": "middleware_rpc_server_test_service",
+  "language": "go",
+  "goModulePath": "github.com/pacific-rim/pacific-rim/module/service/middleware_rpc_server_test_service",
+  "includeRuntimeRegistry": false,
+  "moduleRoot": "module/service/middleware_rpc_server_test_service",
+  "config": "module/service/middleware_rpc_server_test_service/config/config.yaml",
+  "protocolSources": [
+    "pkg/idl"
+  ],
+  "ddsTypedCodegen": [],
+  "interfaces": [
+    {
+      "name": "ping",
+      "kind": "service",
+      "role": "server",
+      "idlService": "middleware_rpc_server_test_service",
+      "serviceRef": "middleware_rpc_server_test_service.ping",
+      "publicService": {
+        "ref": "middleware_rpc_server_test_service.ping",
+        "manifest": "pkg/idl/middleware_rpc_server_test_service/public/interfaces.yaml",
+        "contract": {
+          "format": "protobuf_rpc",
+          "type": "middleware_rpc_server_test_service.Ping",
+          "responseType": ""
+        },
+        "addresses": {
+          "nats": "test.middleware.rpc.ping",
+          "cyclonedds": "test.middleware.rpc.ping.request"
+        },
+        "bindings": []
+      },
+      "routeType": "",
+      "contract": {
+        "format": "protobuf_rpc",
+        "type": "middleware_rpc_server_test_service.Ping",
+        "responseType": ""
+      },
+      "bindings": [
+        {
+          "direction": "server",
+          "middleware": "nats",
+          "transport": "nats_rpc",
+          "subject": "test.middleware.rpc.ping",
+          "metadata": {
+            "middleware.family": "nats",
+            "middleware.runtime": "nats"
+          }
+        },
+        {
+          "direction": "server",
+          "middleware": "cyclonedds",
+          "transport": "cyclonedds_rpc",
+          "service": "test.middleware.rpc.ping.request",
+          "metadata": {
+            "middleware.family": "cyclonedds",
+            "middleware.runtime": "cyclonedds",
+            "middleware.implementation": "native_cyclonedds",
+            "implementation": "native_cyclonedds"
+          }
+        }
+      ],
+      "routeNames": [
+        "ping_nats",
+        "ping_cyclonedds"
+      ],
+      "protocols": [
+        {
+          "format": "protobuf_rpc",
+          "service": "MiddlewareRpcServerTest",
+          "rpc": "Ping",
+          "package": "pacific_rim.middleware_rpc_server_test_service",
+          "file": "pkg/idl/middleware_rpc_server_test_service/pb/MiddlewareRpcServerTest.proto",
+          "idlService": "middleware_rpc_server_test_service",
+          "request": "PingRequest",
+          "response": "PingResponse",
+          "requestFields": [
+            {
+              "name": "request_id",
+              "type": "string",
+              "repeated": false,
+              "optional": false,
+              "tag": 1
+            },
+            {
+              "name": "payload",
+              "type": "string",
+              "repeated": false,
+              "optional": false,
+              "tag": 2
+            }
+          ],
+          "responseFields": [
+            {
+              "name": "ok",
+              "type": "bool",
+              "repeated": false,
+              "optional": false,
+              "tag": 1
+            },
+            {
+              "name": "message",
+              "type": "string",
+              "repeated": false,
+              "optional": false,
+              "tag": 2
+            }
+          ]
+        }
+      ],
+      "artifacts": [],
+      "ddsTyped": null,
+      "generated": {
+        "apiHandler": "api/handler/include/ping_api_handler.hpp",
+        "service": "service/generated/include/ping_service.hpp"
+      },
+      "compatibility": {
+        "descriptors": [
+          {
+            "schema": {
+              "language": "protobuf",
+              "kind": "service",
+              "type": "middleware_rpc_server_test_service.Ping"
+            },
+            "codec": "protobuf",
+            "backend": "nats",
+            "pattern": "rpc",
+            "binding": "nats_rpc",
+            "standard": "",
+            "adapter": "",
+            "dds": null,
+            "warnings": []
+          },
+          {
+            "schema": {
+              "language": "protobuf",
+              "kind": "service",
+              "type": "middleware_rpc_server_test_service.Ping"
+            },
+            "codec": "protobuf",
+            "backend": "cyclonedds",
+            "pattern": "rpc",
+            "binding": "cyclonedds_rpc",
+            "standard": "",
+            "adapter": "",
+            "dds": null,
+            "warnings": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ]
+}

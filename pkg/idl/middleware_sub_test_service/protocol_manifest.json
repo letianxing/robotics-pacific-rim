@@ -1,0 +1,138 @@
+{
+  "module": "middleware_sub_test_service",
+  "runtimePackage": "middleware_sub_test",
+  "idlService": "middleware_sub_test_service",
+  "language": "python",
+  "goModulePath": "",
+  "includeRuntimeRegistry": false,
+  "moduleRoot": "module/service/middleware_sub_test_service",
+  "config": "module/service/middleware_sub_test_service/config/config.yaml",
+  "protocolSources": [
+    "pkg/idl"
+  ],
+  "ddsTypedCodegen": [],
+  "interfaces": [
+    {
+      "name": "robot_state",
+      "kind": "topic",
+      "role": "subscriber",
+      "idlService": "middleware_pub_test_service",
+      "topicRef": "middleware_pub_test_service.robot_state",
+      "publicTopic": {
+        "ref": "middleware_pub_test_service.robot_state",
+        "manifest": "pkg/idl/middleware_pub_test_service/public/interfaces.yaml",
+        "payload": {
+          "format": "protobuf",
+          "type": "pacific_rim.middleware_pub_test_service.RobotStateEvent"
+        },
+        "addresses": {
+          "nats": "test.middleware.robot_state",
+          "cyclonedds": "/test/middleware/robot_state"
+        },
+        "bindings": []
+      },
+      "routeType": "",
+      "payload": {
+        "format": "protobuf",
+        "type": "pacific_rim.middleware_pub_test_service.RobotStateEvent"
+      },
+      "bindings": [
+        {
+          "transport": "nats_topic",
+          "middleware": "nats",
+          "subject": "test.middleware.robot_state",
+          "direction": "subscribe",
+          "metadata": {
+            "middleware.family": "nats",
+            "middleware.runtime": "nats"
+          }
+        },
+        {
+          "transport": "cyclonedds_topic",
+          "middleware": "cyclonedds",
+          "topic": "/test/middleware/robot_state",
+          "direction": "subscribe",
+          "metadata": {
+            "middleware.family": "cyclonedds",
+            "middleware.runtime": "cyclonedds",
+            "middleware.implementation": "native_cyclonedds",
+            "implementation": "native_cyclonedds"
+          }
+        }
+      ],
+      "routeNames": [
+        "robot_state_nats",
+        "robot_state_cyclonedds"
+      ],
+      "protocols": [
+        {
+          "format": "protobuf_message",
+          "name": "RobotStateEvent",
+          "package": "pacific_rim.middleware_pub_test_service",
+          "file": "pkg/idl/middleware_pub_test_service/pb/MiddlewarePubTest.proto",
+          "idlService": "middleware_pub_test_service",
+          "fullName": "pacific_rim.middleware_pub_test_service.RobotStateEvent",
+          "fields": [
+            {
+              "name": "robot_id",
+              "type": "string",
+              "repeated": false,
+              "optional": false,
+              "tag": 1
+            },
+            {
+              "name": "state",
+              "type": "string",
+              "repeated": false,
+              "optional": false,
+              "tag": 2
+            },
+            {
+              "name": "timestamp_unix_ms",
+              "type": "int64",
+              "repeated": false,
+              "optional": false,
+              "tag": 3
+            }
+          ]
+        }
+      ],
+      "artifacts": [],
+      "ddsTyped": null,
+      "generated": {},
+      "compatibility": {
+        "descriptors": [
+          {
+            "schema": {
+              "language": "protobuf",
+              "kind": "message",
+              "type": "pacific_rim.middleware_pub_test_service.RobotStateEvent"
+            },
+            "codec": "protobuf",
+            "backend": "nats",
+            "pattern": "pubsub",
+            "binding": "nats_topic",
+            "adapter": "",
+            "dds": null,
+            "warnings": []
+          },
+          {
+            "schema": {
+              "language": "protobuf",
+              "kind": "message",
+              "type": "pacific_rim.middleware_pub_test_service.RobotStateEvent"
+            },
+            "codec": "protobuf",
+            "backend": "cyclonedds",
+            "pattern": "pubsub",
+            "binding": "cyclonedds_topic",
+            "adapter": "",
+            "dds": null,
+            "warnings": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ]
+}

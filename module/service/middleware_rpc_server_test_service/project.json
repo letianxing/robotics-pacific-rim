@@ -1,0 +1,61 @@
+{
+  "name": "module-middleware_rpc_server_test_service",
+  "root": "module/service/middleware_rpc_server_test_service",
+  "projectType": "application",
+  "tags": [
+    "scope:module",
+    "type:robot-behavior",
+    "framework:ros2",
+    "framework:go",
+    "ros2:humble",
+    "language:go",
+    "platform:runtime"
+  ],
+  "implicitDependencies": [
+    "infra-runtime",
+    "infra-communication",
+    "infra-protocol",
+    "infra-otel",
+    "infra-log",
+    "infra-metric",
+    "infra-trace",
+    "pkg-idl"
+  ],
+  "targets": {
+    "check": {
+      "command": "node bin/check-project.mjs module-middleware_rpc_server_test_service"
+    },
+    "build": {
+      "command": "ROS_DISTRO=humble INSTALL_GOLANG=1 scripts/ros2-docker.sh build --packages-select middleware_rpc_server_test --build-base build/middleware_rpc_server_test --install-base install/middleware_rpc_server_test --log-base log/middleware_rpc_server_test",
+      "cache": false,
+      "inputs": [
+        "production",
+        "^production",
+        "workspace",
+        {
+          "env": "ROS_DISTRO"
+        },
+        {
+          "env": "INSTALL_GOLANG"
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}/build/middleware_rpc_server_test",
+        "{workspaceRoot}/install/middleware_rpc_server_test",
+        "{workspaceRoot}/log"
+      ]
+    },
+    "test": {
+      "command": "GOCACHE=$(pwd)/.cache/go-build go -C module/service/middleware_rpc_server_test_service test ./...",
+      "outputs": []
+    }
+  },
+  "ros2": {
+    "package": "middleware_rpc_server_test",
+    "distro": "humble",
+    "includeInAll": false,
+    "env": {
+      "INSTALL_GOLANG": "1"
+    }
+  }
+}

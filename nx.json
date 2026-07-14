@@ -1,0 +1,75 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "affected": {
+    "defaultBase": "main"
+  },
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "!{projectRoot}/dist/**",
+      "!{projectRoot}/build/**",
+      "!{projectRoot}/coverage/**",
+      "!{projectRoot}/target/**",
+      "!{projectRoot}/__pycache__/**",
+      "!{projectRoot}/**/__pycache__/**",
+      "!{projectRoot}/**/.cache/**"
+    ],
+    "production": [
+      "default",
+      "!{projectRoot}/**/*.test.*",
+      "!{projectRoot}/**/*.spec.*"
+    ],
+    "workspace": [
+      "{workspaceRoot}/nx.json",
+      "{workspaceRoot}/package.json",
+      "{workspaceRoot}/package-lock.json",
+      "{workspaceRoot}/tsconfig.base.json",
+      "{workspaceRoot}/infra/go.mod",
+      "{workspaceRoot}/infra/go.sum",
+      "{workspaceRoot}/bin/**/*.mjs",
+      "{workspaceRoot}/scripts/**/*.sh",
+      "{workspaceRoot}/deploy/local/ros2/**/*"
+    ]
+  },
+  "targetDefaults": {
+    "check": {
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        "workspace"
+      ],
+      "outputs": [
+        "{workspaceRoot}/.cache/pacific-rim/{projectName}/check"
+      ]
+    },
+    "build": {
+      "cache": true,
+      "inputs": [
+        "production",
+        "^production",
+        "workspace"
+      ],
+      "outputs": [
+        "{projectRoot}/dist",
+        "{projectRoot}/build"
+      ]
+    },
+    "test": {
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        "workspace"
+      ],
+      "outputs": [
+        "{projectRoot}/coverage"
+      ]
+    }
+  },
+  "workspaceLayout": {
+    "appsDir": "module",
+    "libsDir": "infra"
+  },
+  "analytics": true
+}

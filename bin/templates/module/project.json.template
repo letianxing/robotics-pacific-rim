@@ -1,0 +1,21 @@
+{
+  "name": "{{projectName}}",
+  "root": "module/service/{{name}}",
+  "projectType": "application",
+  "tags": [
+    "scope:module",
+    "type:robot-behavior",
+    "platform:runtime"
+  ],
+  "implicitDependencies": [
+    "infra-runtime",
+    "infra-communication",
+    "infra-protocol",
+    "pkg-idl"
+  ],
+  "targets": {
+    "check": {
+      "command": "node bin/check-project.mjs {{projectName}}"
+    }
+  }
+}

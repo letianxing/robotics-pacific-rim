@@ -1,0 +1,9 @@
+topics:
+  robot_state:
+    role: publisher
+    direction: publish
+    data: proto
+    type: pacific_rim.middleware_pub_test_service.RobotStateEvent
+    addresses:
+      nats: test.middleware.robot_state
+      cyclonedds: /test/middleware/robot_state

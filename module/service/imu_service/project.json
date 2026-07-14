@@ -1,0 +1,50 @@
+{
+  "name": "module-imu_service",
+  "root": "module/service/imu_service",
+  "projectType": "application",
+  "tags": [
+    "scope:module",
+    "type:robot-behavior",
+    "framework:ros2",
+    "ros2:humble",
+    "language:cpp",
+    "platform:runtime"
+  ],
+  "implicitDependencies": [
+    "infra-runtime",
+    "infra-communication",
+    "infra-protocol",
+    "infra-otel",
+    "infra-log",
+    "infra-metric",
+    "infra-trace",
+    "pkg-idl"
+  ],
+  "targets": {
+    "check": {
+      "command": "node bin/check-project.mjs module-imu_service"
+    },
+    "build": {
+      "command": "ROS_DISTRO=humble scripts/ros2-docker.sh build --packages-select imu --build-base build/imu --install-base install/imu --log-base log/imu",
+      "cache": false,
+      "inputs": [
+        "production",
+        "^production",
+        "workspace",
+        {
+          "env": "ROS_DISTRO"
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}/build/imu",
+        "{workspaceRoot}/install/imu",
+        "{workspaceRoot}/log"
+      ]
+    }
+  },
+  "ros2": {
+    "package": "imu",
+    "distro": "humble",
+    "includeInAll": true
+  }
+}

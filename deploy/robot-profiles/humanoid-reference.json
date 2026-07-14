@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "id": "humanoid-reference",
+  "displayName": "Humanoid Reference Stack",
+  "status": "template",
+  "robotClass": "humanoid",
+  "summary": "Recommended full-stack capability shape for humanoid robots with perception, locomotion, manipulation, memory, and internal state.",
+  "capabilities": [
+    "state.inertial",
+    "state.joint",
+    "state.battery",
+    "diagnostics.health",
+    "motion.gait",
+    "motion.arm",
+    "perception.rgb_camera",
+    "perception.depth_camera",
+    "perception.audio_input",
+    "perception.audio_output",
+    "navigation.map",
+    "navigation.goal",
+    "ai.intent",
+    "ai.task_plan",
+    "ai.memory_event",
+    "ai.internal_state"
+  ],
+  "services": [
+    {
+      "service": "imu_service",
+      "package": "imu",
+      "role": "driver.inertial",
+      "required": false,
+      "capabilities": [
+        "state.inertial"
+      ]
+    }
+  ],
+  "plannedServices": [
+    {
+      "service": "joint_state_service",
+      "role": "driver.joint-state",
+      "capabilities": [
+        "state.joint"
+      ]
+    },
+    {
+      "service": "whole_body_control_service",
+      "role": "motion.whole-body-control",
+      "capabilities": [
+        "motion.gait",
+        "motion.arm"
+      ]
+    },
+    {
+      "service": "robot_perception_service",
+      "role": "perception.scene-understanding",
+      "capabilities": [
+        "perception.rgb_camera",
+        "perception.depth_camera"
+      ]
+    },
+    {
+      "service": "robo_brain_service",
+      "role": "ai.intent-and-planning",
+      "capabilities": [
+        "ai.intent",
+        "ai.task_plan"
+      ]
+    },
+    {
+      "service": "robo_memory_service",
+      "role": "ai.memory",
+      "capabilities": [
+        "ai.memory_event"
+      ]
+    },
+    {
+      "service": "robo_internal_state_service",
+      "role": "ai.internal-state",
+      "capabilities": [
+        "ai.internal_state"
+      ]
+    }
+  ],
+  "deploy": {
+    "rosDistro": "humble",
+    "defaultDomainId": 42,
+    "transportFamilies": [
+      "ros2",
+      "fastdds",
+      "cyclonedds",
+      "nats"
+    ],
+    "targets": [
+      "local",
+      "remote",
+      "jetson",
+      "pc-nvidia"
+    ],
+    "verification": []
+  },
+  "aiNative": {
+    "skill": ".skill/robot_full_stack/SKILL.md",
+    "agentEntry": "AGENTS.md"
+  }
+}

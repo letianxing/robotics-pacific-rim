@@ -1,0 +1,15 @@
+{
+  "name": "pkg-robot",
+  "root": "pkg/robot",
+  "projectType": "library",
+  "tags": [
+    "scope:pkg",
+    "type:robot-catalog",
+    "platform:planning"
+  ],
+  "targets": {
+    "check": {
+      "command": "node bin/robot-profiles.mjs check"
+    }
+  }
+}

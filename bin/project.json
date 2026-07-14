@@ -1,0 +1,14 @@
+{
+  "name": "tools-bin",
+  "root": "bin",
+  "projectType": "tool",
+  "tags": [
+    "scope:tools",
+    "type:scaffold"
+  ],
+  "targets": {
+    "check": {
+      "command": "node bin/check-project.mjs tools-bin && node bin/test-create-scaffold.mjs && node bin/test-interface-scaffold.mjs"
+    }
+  }
+}

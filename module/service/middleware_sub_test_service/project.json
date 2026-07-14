@@ -1,0 +1,50 @@
+{
+  "name": "module-middleware_sub_test_service",
+  "root": "module/service/middleware_sub_test_service",
+  "projectType": "application",
+  "tags": [
+    "scope:module",
+    "type:robot-behavior",
+    "framework:ros2",
+    "ros2:humble",
+    "language:python",
+    "platform:runtime"
+  ],
+  "implicitDependencies": [
+    "infra-runtime",
+    "infra-communication",
+    "infra-protocol",
+    "infra-otel",
+    "infra-log",
+    "infra-metric",
+    "infra-trace",
+    "pkg-idl"
+  ],
+  "targets": {
+    "check": {
+      "command": "node bin/check-project.mjs module-middleware_sub_test_service"
+    },
+    "build": {
+      "command": "ROS_DISTRO=humble scripts/ros2-docker.sh build --packages-select middleware_sub_test --build-base build/middleware_sub_test --install-base install/middleware_sub_test --log-base log/middleware_sub_test",
+      "cache": false,
+      "inputs": [
+        "production",
+        "^production",
+        "workspace",
+        {
+          "env": "ROS_DISTRO"
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}/build/middleware_sub_test",
+        "{workspaceRoot}/install/middleware_sub_test",
+        "{workspaceRoot}/log"
+      ]
+    }
+  },
+  "ros2": {
+    "package": "middleware_sub_test",
+    "distro": "humble",
+    "includeInAll": false
+  }
+}

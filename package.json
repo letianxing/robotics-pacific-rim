@@ -1,0 +1,59 @@
+{
+  "name": "pacific-rim",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Open-source robotics full-stack monorepo framework.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/letianxing/robotics-pacific-rim.git"
+  },
+  "type": "module",
+  "scripts": {
+    "affected": "nx affected -t check",
+    "build": "nx run-many -t build --all",
+    "check": "node bin/check.mjs",
+    "check:all": "nx run-many -t check --all",
+    "create": "node bin/create.mjs",
+    "graph": "nx graph",
+    "list": "node bin/create.mjs list",
+    "observability:down": "scripts/ros2-docker.sh down",
+    "observability:logs": "scripts/ros2-docker.sh logs-observability",
+    "observability:up": "scripts/ros2-docker.sh up-observability",
+    "projects": "nx show projects",
+    "remove": "node bin/remove.mjs",
+    "ros2:build": "node bin/pr.mjs ros2:build",
+    "ros2:build-image": "scripts/ros2-docker.sh build-image",
+    "ros2:deploy-base-image": "scripts/ros2-docker.sh deploy-base-image",
+    "ros2:deploy": "scripts/ros2-docker.sh deploy-image",
+    "ros2:exec": "node bin/pr.mjs ros2:exec",
+    "ros2:run": "node bin/ros2-run.mjs",
+    "ros2:shell": "scripts/ros2-docker.sh shell",
+    "test:go": "GOCACHE=${GOCACHE:-$(pwd)/.cache/go-build} go -C infra test ./communication/go/... ./protocol/go/... ./otel/go ./trace/go ./metric/go ./log/go",
+    "test:stability": "node test/run.mjs",
+    "trace:demo": "node scripts/run-trace-chain.mjs"
+  },
+  "bin": {
+    "pacific-rim": "./bin/create.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.2",
+    "nx": "^22.7.5",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.1",
+    "@opentelemetry/api-logs": "^0.218.0",
+    "@opentelemetry/exporter-logs-otlp-http": "^0.218.0",
+    "@opentelemetry/exporter-metrics-otlp-http": "^0.218.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.218.0",
+    "@opentelemetry/resources": "^2.7.1",
+    "@opentelemetry/sdk-logs": "^0.218.0",
+    "@opentelemetry/sdk-metrics": "^2.7.1",
+    "@opentelemetry/sdk-trace-node": "^2.7.1",
+    "@opentelemetry/semantic-conventions": "^1.41.1"
+  }
+}

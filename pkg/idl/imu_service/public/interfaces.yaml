@@ -1,0 +1,14 @@
+services:
+
+topics:
+  /imu/state:
+    role: publisher
+    direction: publish
+    data: proto
+    type: pacific_rim.imu_service.protocols.pb.ImuState
+    qos:
+      reliability: best_effort
+      history: keep_last
+      depth: 1
+    addresses:
+      cyclonedds: /imu/state

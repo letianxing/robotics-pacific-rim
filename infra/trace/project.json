@@ -1,0 +1,27 @@
+{
+  "name": "infra-trace",
+  "root": "infra/trace",
+  "projectType": "library",
+  "tags": [
+    "scope:infra",
+    "type:observability",
+    "otel:trace",
+    "platform:runtime"
+  ],
+  "implicitDependencies": [
+    "infra-otel",
+    "infra-protocol"
+  ],
+  "targets": {
+    "build": {
+      "command": "tsc -p infra/trace/tsconfig.json"
+    },
+    "test": {
+      "command": "go -C infra test ./trace/go",
+      "outputs": []
+    },
+    "check": {
+      "command": "node bin/check-project.mjs infra-trace"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "infra-runtime",
+  "root": "infra/runtime",
+  "projectType": "library",
+  "tags": [
+    "scope:infra",
+    "type:runtime",
+    "platform:runtime"
+  ],
+  "implicitDependencies": [
+    "infra-protocol"
+  ],
+  "targets": {
+    "check": {
+      "command": "node bin/check-project.mjs infra-runtime"
+    }
+  }
+}

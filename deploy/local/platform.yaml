@@ -1,0 +1,12 @@
+platform:
+  observability:
+    # Application-facing OTLP HTTP endpoint.
+    # Use http://otel-collector:4318 when the collector runs in the same compose network.
+    otlp_endpoint: "http://localhost:8636"
+    otlp_http_url: "http://localhost:8636"
+    grafana_url: "http://localhost:16000"
+    prometheus_url: "http://localhost:18180"
+    loki_url: "http://localhost:6200"
+    tempo_url: "http://localhost:6400"
+    collector_health_url: "http://localhost:26266"
+    collector_metrics_url: "http://localhost:18928/metrics"

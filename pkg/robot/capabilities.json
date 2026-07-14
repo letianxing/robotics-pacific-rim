@@ -1,0 +1,396 @@
+{
+  "schemaVersion": 1,
+  "capabilities": [
+    {
+      "id": "runtime.middleware.pubsub",
+      "family": "runtime",
+      "summary": "Publish/subscribe transport smoke coverage for module routes.",
+      "contractStatus": "available",
+      "recommendedIdlService": "middleware_pub_test_service",
+      "signals": [
+        {
+          "name": "sample_payload",
+          "unit": "message"
+        }
+      ],
+      "contracts": [
+        {
+          "service": "middleware_pub_test_service",
+          "path": "pkg/idl/middleware_pub_test_service/public/interfaces.yaml",
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "runtime.middleware.rpc",
+      "family": "runtime",
+      "summary": "Request/response transport smoke coverage for service routes.",
+      "contractStatus": "available",
+      "recommendedIdlService": "middleware_rpc_server_test_service",
+      "signals": [
+        {
+          "name": "request",
+          "unit": "message"
+        },
+        {
+          "name": "response",
+          "unit": "message"
+        }
+      ],
+      "contracts": [
+        {
+          "service": "middleware_rpc_server_test_service",
+          "path": "pkg/idl/middleware_rpc_server_test_service/public/interfaces.yaml",
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "state.inertial",
+      "family": "state",
+      "summary": "Robot IMU state including angular velocity, linear acceleration, and orientation.",
+      "contractStatus": "available",
+      "recommendedIdlService": "imu_service",
+      "signals": [
+        {
+          "name": "angular_velocity",
+          "unit": "rad/s"
+        },
+        {
+          "name": "linear_acceleration",
+          "unit": "m/s^2"
+        },
+        {
+          "name": "orientation",
+          "unit": "quaternion"
+        }
+      ],
+      "contracts": [
+        {
+          "service": "imu_service",
+          "route": "/imu/state",
+          "path": "pkg/idl/imu_service/public/interfaces.yaml",
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "id": "state.joint",
+      "family": "state",
+      "summary": "Joint position, velocity, torque, and health state for articulated robots.",
+      "contractStatus": "planned",
+      "recommendedIdlService": "joint_state_service",
+      "signals": [
+        {
+          "name": "position",
+          "unit": "rad"
+        },
+        {
+          "name": "velocity",
+          "unit": "rad/s"
+        },
+        {
+          "name": "effort",
+          "unit": "N*m"
+        }
+      ],
+      "contracts": []
+    },
+    {
+      "id": "state.base_odometry",
+      "family": "state",
+      "summary": "Base pose and velocity state for wheeled, tracked, and legged locomotion.",
+      "contractStatus": "planned",
+      "recommendedIdlService": "base_odometry_service",
+      "signals": [
+        {
+          "name": "pose",
+          "unit": "SE3"
+        },
+        {
+          "name": "twist",
+          "unit": "m/s rad/s"
+        }
+      ],
+      "contracts": []
+    },
+    {
+      "id": "state.battery",
+      "family": "state",
+      "summary": "Battery charge, voltage, current, temperature, and power limits.",
+      "contractStatus": "planned",
+      "recommendedIdlService": "battery_state_service",
+      "signals": [
+        {
+          "name": "state_of_charge",
+          "unit": "percent"
+        },
+        {
+          "name": "voltage",
+          "unit": "V"
+        },
+        {
+          "name": "current",
+          "unit": "A"
+        }
+      ],
+      "contracts": []
+    },
+    {
+      "id": "diagnostics.health",
+      "family": "diagnostics",
+      "summary": "Module, hardware, and runtime health summaries for deploy verification.",
+      "contractStatus": "planned",
+      "recommendedIdlService": "diagnostics_service",
+      "signals": [
+        {
+          "name": "status",
+          "unit": "enum"
+        },
+        {
+          "name": "latency",
+          "unit": "ms"
+        }
+      ],
+      "contracts": []
+    },
+    {
+      "id": "motion.base_velocity",
+      "family": "motion",
+      "summary": "Commanded linear and angular velocity for mobile bases.",
+      "contractStatus": "planned",
+      "recommendedIdlService": "base_motion_service",
+      "signals": [
+        {
+          "name": "linear_velocity",
+          "unit": "m/s"
+        },
+        {
+          "name": "angular_velocity",
+          "unit": "rad/s"
+        }
+      ],
+      "contracts": []
+    },
+    {
+      "id": "motion.gait",
+      "family": "motion",
+      "summary": "Gait mode, step targets, balance state, and fall recovery controls.",
+      "contractStatus": "planned",
+      "recommendedIdlService": "gait_control_service",
+      "signals": [
+        {
+          "name": "gait_mode",
+          "unit": "enum"
+        },
+        {
+          "name": "step_target",
+          "unit": "pose"
+        }
+      ],
+      "contracts": []
+    },
+    {
+      "id": "motion.arm",
+      "family": "motion",
+      "summary": "Arm, hand, or end-effector goals for manipulation.",
+      "contractStatus": "planned",
+      "recommendedIdlService": "manipulation_service",
+      "signals": [
+        {
+          "name": "target_pose",
+          "unit": "SE3"
+        },
+        {
+          "name": "gripper_state",
+          "unit": "enum"
+        }
+      ],
+      "contracts": []
+    },
+    {
+      "id": "perception.rgb_camera",
+      "family": "perception",
+      "summary": "RGB image frames and camera calibration.",
+      "contractStatus": "planned",
+      "recommendedIdlService": "vision_camera_service",
+      "signals": [
+        {
+          "name": "image",
+          "unit": "frame"
+        },
+        {
+          "name": "camera_info",
+          "unit": "calibration"
+        }
+      ],
+      "contracts": []
+    },
+    {
+      "id": "perception.depth_camera",
+      "family": "perception",
+      "summary": "Depth image or point cloud stream with calibration.",
+      "contractStatus": "planned",
+      "recommendedIdlService": "depth_camera_service",
+      "signals": [
+        {
+          "name": "depth",
+          "unit": "m"
+        },
+        {
+          "name": "point_cloud",
+          "unit": "points"
+        }
+      ],
+      "contracts": []
+    },
+    {
+      "id": "perception.audio_input",
+      "family": "perception",
+      "summary": "Microphone frames, wake state, and speech events.",
+      "contractStatus": "planned",
+      "recommendedIdlService": "audio_input_service",
+      "signals": [
+        {
+          "name": "audio_frame",
+          "unit": "pcm"
+        },
+        {
+          "name": "wake_state",
+          "unit": "enum"
+        }
+      ],
+      "contracts": []
+    },
+    {
+      "id": "perception.audio_output",
+      "family": "perception",
+      "summary": "Speech synthesis requests and playback state.",
+      "contractStatus": "planned",
+      "recommendedIdlService": "tts_service",
+      "signals": [
+        {
+          "name": "text",
+          "unit": "utf8"
+        },
+        {
+          "name": "playback_state",
+          "unit": "enum"
+        }
+      ],
+      "contracts": []
+    },
+    {
+      "id": "navigation.map",
+      "family": "navigation",
+      "summary": "Local map, semantic map, or occupancy grid state.",
+      "contractStatus": "planned",
+      "recommendedIdlService": "mapping_service",
+      "signals": [
+        {
+          "name": "map",
+          "unit": "grid"
+        },
+        {
+          "name": "semantic_regions",
+          "unit": "list"
+        }
+      ],
+      "contracts": []
+    },
+    {
+      "id": "navigation.goal",
+      "family": "navigation",
+      "summary": "Navigation goal, path, and execution state.",
+      "contractStatus": "planned",
+      "recommendedIdlService": "navigation_service",
+      "signals": [
+        {
+          "name": "goal",
+          "unit": "pose"
+        },
+        {
+          "name": "path",
+          "unit": "poses"
+        }
+      ],
+      "contracts": []
+    },
+    {
+      "id": "ai.intent",
+      "family": "ai",
+      "summary": "User intent, context, and confidence produced by brain modules.",
+      "contractStatus": "planned",
+      "recommendedIdlService": "robo_brain_service",
+      "signals": [
+        {
+          "name": "intent",
+          "unit": "semantic_event"
+        },
+        {
+          "name": "confidence",
+          "unit": "ratio"
+        }
+      ],
+      "contracts": []
+    },
+    {
+      "id": "ai.task_plan",
+      "family": "ai",
+      "summary": "Task decomposition and executable robot action plans.",
+      "contractStatus": "planned",
+      "recommendedIdlService": "task_planner_service",
+      "signals": [
+        {
+          "name": "plan",
+          "unit": "steps"
+        },
+        {
+          "name": "execution_state",
+          "unit": "enum"
+        }
+      ],
+      "contracts": []
+    },
+    {
+      "id": "ai.memory_event",
+      "family": "ai",
+      "summary": "Memory write/read events for long-term robot context.",
+      "contractStatus": "planned",
+      "recommendedIdlService": "robo_memory_service",
+      "signals": [
+        {
+          "name": "memory_event",
+          "unit": "semantic_event"
+        },
+        {
+          "name": "query",
+          "unit": "text"
+        }
+      ],
+      "contracts": []
+    },
+    {
+      "id": "ai.internal_state",
+      "family": "ai",
+      "summary": "Internal state estimation such as attention, emotion, fatigue, and interaction mode.",
+      "contractStatus": "planned",
+      "recommendedIdlService": "robo_internal_state_service",
+      "signals": [
+        {
+          "name": "attention",
+          "unit": "ratio"
+        },
+        {
+          "name": "emotion",
+          "unit": "enum"
+        },
+        {
+          "name": "interaction_mode",
+          "unit": "enum"
+        }
+      ],
+      "contracts": []
+    }
+  ]
+}

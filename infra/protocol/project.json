@@ -1,0 +1,16 @@
+{
+  "name": "infra-protocol",
+  "root": "infra/protocol",
+  "projectType": "library",
+  "tags": [
+    "scope:infra",
+    "type:contract",
+    "platform:runtime"
+  ],
+  "implicitDependencies": [],
+  "targets": {
+    "check": {
+      "command": "node bin/check-project.mjs infra-protocol"
+    }
+  }
+}
