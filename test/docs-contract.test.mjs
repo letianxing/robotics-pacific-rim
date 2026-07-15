@@ -6,6 +6,7 @@ import {
 } from "./lib/harness.mjs";
 
 const readme = readText("README.md");
+const readmeZh = readText("README_ZH.md");
 const prCommands = readText("pr-cmd-all.md");
 
 for (const [label, text] of [
@@ -37,7 +38,19 @@ for (const [label, text] of [
 }
 
 test("README keeps plain ROS2 and vision profile commands distinct", () => {
-  assertIncludes(readme, "不设置 `VISION_TARGET` 时仍构建普通 ROS2 镜像", "plain image note");
+  assertIncludes(readmeZh, "不设置 `VISION_TARGET` 时仍构建普通 ROS2 镜像", "plain image note");
   assertIncludes(readme, "ENABLE_VISION_STACK=1 ./pr ros2:build-image", "common vision command");
   assertIncludes(readme, "VISION_TARGET=auto ./pr ros2:build --packages-select demo_action", "profile build package");
+});
+
+test("README exposes language switch files", () => {
+  assertIncludes(readme, "[English](./README_EN.md) | [中文](./README_ZH.md)", "English README language switch");
+  assertIncludes(readmeZh, "[English](./README_EN.md) | [中文](./README_ZH.md)", "Chinese README language switch");
+});
+
+test("README documents AI Native service workflow", () => {
+  assertIncludes(readme, "AI Native + Robotics", "English AI Native positioning");
+  assertIncludes(readme, "vibe coding", "English vibe coding workflow");
+  assertIncludes(readmeZh, "AI Native + Robotics", "Chinese AI Native positioning");
+  assertIncludes(readmeZh, "vibe coding", "Chinese vibe coding workflow");
 });
