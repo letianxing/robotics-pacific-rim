@@ -4,8 +4,18 @@ Shared adapters and runtime libraries for the robotics platform.
 
 Packages in this directory should stay domain-agnostic and reusable across
 modules, deployment tooling, examples, and future language bindings, but may
-bind to concrete runtime systems such as NATS, ROS2, CycloneDDS, Zenoh, gRPC,
-MQTT, OpenTelemetry, or executors.
+bind to concrete runtime systems.
+
+Current runtime coverage is intentionally partial:
+
+- `infra/communication` currently implements NATS, ROS2, CycloneDDS, and Fast DDS
+  paths, with language-specific coverage documented in
+  `infra/communication/README.md`.
+- Zenoh, gRPC, MQTT, AimRT, CyberRT, and similar transports are not implemented
+  communication backends in this repository yet, even if some enum/contract names
+  are reserved for future extension.
+- Telemetry and execution support live in their own packages such as `infra/otel`,
+  `infra/trace`, `infra/metric`, `infra/log`, and `infra/runtime`.
 
 Rules:
 

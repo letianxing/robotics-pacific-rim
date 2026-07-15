@@ -10,6 +10,27 @@ It does not own business schemas, action names, protobuf files, IDL files, or
 field mappers. Public cross-module IDL lives in
 `pkg/idl/<service>/{pb,ros2}`; serialization mechanics live in `infra/protocol`.
 
+## Current Scope
+
+The implemented communication middleware scope is intentionally limited. Use
+only these high-level route middleware values in module `config.yaml` files:
+
+| Middleware | Status | Notes |
+| --- | --- | --- |
+| `nats` | Implemented | Pub/sub and request/reply byte transport. |
+| `ros2` | Implemented | Native ROSIDL routes and protobuf envelope routes. Go native ROS2 requires the `pacific_rim_ros2_rclgo` build tag or explicit rosbridge fallback. |
+| `cyclonedds` | Implemented, partial by data path | Native byte-envelope/protobuf paths exist; ROSIDL `msg|srv` routes use the ROS2 RMW CycloneDDS path internally. |
+| `fastdds` | Implemented, partial by data path | Native byte-envelope/protobuf paths exist; ROSIDL `msg|srv` routes use the ROS2 RMW Fast DDS path internally. Go native Fast DDS requires the `pacific_rim_fastdds` build tag. |
+| `zenoh` | Not implemented | Reserved for future extension only. |
+| `grpc` | Not implemented | Reserved for future extension only. |
+| `mqtt` | Not implemented | Reserved for future extension only. |
+| `aimrt`, `cyberrt`, `http`, `tcp`, `udp`, `quic` | Not implemented | Add only with a real `MessageBus` implementation or bridge runtime. |
+
+Some language contracts contain enum values for future middleware families.
+Those names do not mean the middleware is supported by themselves. A middleware
+is considered usable only when this package contains a real bus implementation,
+route binding, connection handling, and tests for the route shape.
+
 ## Implemented Backends
 
 - `python/pacific_rim_communication_infra/core`: `MessageBus`,
@@ -107,6 +128,8 @@ route configuration examples, see `doc/new_module_pr_workflow.md`.
 Business modules configure only the payload data format, the middleware protocol,
 route addresses, and optional QoS. They should not configure transport buses,
 adapters, RMW implementations, bridge modes, or middleware implementation names.
+At the module route level, supported middleware values are currently `nats`,
+`ros2`, `cyclonedds`, and `fastdds`.
 
 ```yaml
 communication:
